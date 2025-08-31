@@ -2,174 +2,185 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S.W. Services | NDIS Disability Support</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        accent: '#F59E0B',
+                        light: '#F3F4F6',
+                        dark: '#1F2937'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
         body {
             font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
         }
         
-        .gradient-bg {
-            background: linear-gradient(135deg, #38a169 0%, #dd6b20 100%);
+        .hero-gradient {
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
         }
         
-        .logo {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
         
-        .heart-beat {
-            animation: heartbeat 1.5s ease-in-out infinite both;
+        .testimonial-card {
+            transition: all 0.3s ease;
         }
         
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            30% { transform: scale(1.1); }
-            50% { transform: scale(1); }
-            70% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        .testimonial-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Header/Navigation -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white">
-                    <i class="fas fa-hands-helping text-xl"></i>
-                </div>
-                <h1 class="logo text-xl md:text-2xl font-bold text-gray-800">
-                    <span class="text-green-600">S.W.</span>
-                    <span class="text-orange-500">Services</span>
-                </h1>
+    <!-- Header -->
+    <header class="bg-white shadow-md fixed w-full z-50">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="text-2xl font-bold text-primary">S.W. Services</h1>
+                <span class="ml-2 text-sm bg-secondary text-white px-2 py-1 rounded">NDIS Registered</span>
             </div>
             
-            <nav class="hidden md:flex space-x-8">
-                <a href="#home" class="text-gray-700 hover:text-green-600 font-medium">Home</a>
-                <a href="#services" class="text-gray-700 hover:text-green-600 font-medium">Services</a>
-                <a href="#about" class="text-gray-700 hover:text-green-600 font-medium">About Us</a>
-                <a href="#contact" class="text-gray-700 hover:text-green-600 font-medium">Contact</a>
-            </nav>
-            
-            <div class="md:hidden">
-                <button id="menu-toggle" class="text-gray-700 focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
+            <div class="hidden md:flex space-x-8">
+                <a href="#services" class="text-dark hover:text-primary transition">Services</a>
+                <a href="#about" class="text-dark hover:text-primary transition">About</a>
+                <a href="#ndis" class="text-dark hover:text-primary transition">NDIS Info</a>
+                <a href="#testimonials" class="text-dark hover:text-primary transition">Testimonials</a>
+                <a href="#contact" class="text-dark hover:text-primary transition">Contact</a>
             </div>
-        </div>
+            
+            <a href="#contact" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition hidden md:block">
+                Get Support
+            </a>
+            
+            <button class="md:hidden text-dark" id="mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 shadow-lg">
-            <a href="#home" class="block py-2 text-gray-700 hover:text-green-600">Home</a>
-            <a href="#services" class="block py-2 text-gray-700 hover:text-green-600">Services</a>
-            <a href="#about" class="block py-2 text-gray-700 hover:text-green-600">About Us</a>
-            <a href="#contact" class="block py-2 text-gray-700 hover:text-green-600">Contact</a>
+        <div class="hidden md:hidden bg-white shadow-lg" id="mobile-menu">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="#services" class="text-dark hover:text-primary transition">Services</a>
+                <a href="#about" class="text-dark hover:text-primary transition">About</a>
+                <a href="#ndis" class="text-dark hover:text-primary transition">NDIS Info</a>
+                <a href="#testimonials" class="text-dark hover:text-primary transition">Testimonials</a>
+                <a href="#contact" class="text-dark hover:text-primary transition">Contact</a>
+                <a href="#contact" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-center">
+                    Get Support
+                </a>
+            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="gradient-bg text-white py-12 md:py-24">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+    <section class="hero-gradient text-white pt-32 pb-20 px-4">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
             <div class="md:w-1/2 mb-10 md:mb-0">
-                <h1 class="text-4xl md:text-5xl font-bold mb-6">Quality <span class="heart-beat inline-block">❤️</span> NDIS Support Services</h1>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Quality <span class="text-accent"><i class="fas fa-heart"></i></span> NDIS Support Services</h2>
                 <p class="text-xl mb-8">Providing compassionate and professional disability support services tailored to your unique needs.</p>
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="#contact" class="bg-white text-green-700 hover:bg-gray-100 font-bold py-3 px-6 rounded-full text-center transition duration-300 active:scale-95 touch-action:manipulation">
-                        Get in Touch
+                    <a href="#contact" class="bg-white text-primary px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition text-center">
+                        Contact Us
                     </a>
-                    <a href="#services" class="border-2 border-white hover:bg-white hover:text-green-700 font-bold py-3 px-6 rounded-full text-center transition duration-300 active:scale-95 touch-action:manipulation">
+                    <a href="#services" class="border-2 border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-primary transition text-center">
                         Our Services
                     </a>
                 </div>
             </div>
-            <div class="md:w-1/2 flex justify-center mt-8 md:mt-0">
-                <div class="relative w-56 h-56 md:w-80 md:h-80 bg-white rounded-full flex items-center justify-center shadow-xl overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                         alt="Caregiver assisting a person with disability"
-                         class="absolute inset-0 w-full h-full object-cover opacity-30">
-                    <div class="absolute inset-0 rounded-full border-8 border-white opacity-20 animate-ping"></div>
-                    <div class="text-6xl md:text-8xl text-green-600 z-10">
-                        <i class="fas fa-heart heart-beat"></i>
-                    </div>
-                    <div class="absolute bottom-0 bg-orange-500 text-white px-4 py-2 rounded-full shadow-lg z-10">
-                        <span class="font-bold">I  ❤️ NDIS</span>
-                    </div>
-                </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="covered1.png" 
+                     alt="Caregiver assisting with personal care" 
+                     class="rounded-2xl shadow-xl w-full max-w-md animate-float">
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
+    <section id="services" class="py-20 bg-white px-4">
+        <div class="container mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Disability Support Services</h2>
-                <div class="w-20 h-1 bg-green-600 mx-auto mb-4"></div>
-                <p class="text-gray-600 max-w-2xl mx-auto">We provide comprehensive support services under the National Disability Insurance Scheme (NDIS) to help you live your best life.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Our Disability Support Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">We provide comprehensive support services under the National Disability Insurance Scheme (NDIS) to help you live your best life.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300">
-                    <div class="h-40 overflow-hidden rounded-t-xl -mx-6 -mt-6 mb-6">
-                        <img src="https://images.unsplash.com/photo-1573497491765-dccce02b9df7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                             alt="Caregiver assisting with personal care"
-                             class="w-full h-full object-cover">
+                <!-- Service Card 1 -->
+                <div class="service-card bg-light rounded-2xl p-6 shadow-md transition duration-300">
+                    <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                        <i class="fas fa-hands-helping"></i>
                     </div>
-                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mb-6 -mt-8 mx-auto">
-                        <i class="fas fa-user-friends text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">Personal Care Assistance</h3>
-                    <p class="text-gray-600 text-center">Support with daily living activities to help you maintain independence and dignity.</p>
+                    <h3 class="text-xl font-semibold mb-3">Personal Care Assistance</h3>
+                    <p class="text-gray-600">Support with daily living activities to help you maintain independence and dignity.</p>
                 </div>
                 
-                <!-- Service 2 -->
-                <div class="bg-gray-50 rounded-xl p-8 shadow-md hover:shadow-lg transition duration-300">
-                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mb-6">
-                        <i class="fas fa-home text-2xl"></i>
+                <!-- Service Card 2 -->
+                <div class="service-card bg-light rounded-2xl p-6 shadow-md transition duration-300">
+                    <div class="w-14 h-14 bg-secondary rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                        <i class="fas fa-users"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Community Participation</h3>
+                    <h3 class="text-xl font-semibold mb-3">Community Participation</h3>
                     <p class="text-gray-600">Assistance to engage in social and community activities that interest you.</p>
                 </div>
                 
-                <!-- Service 3 -->
-                <div class="bg-gray-50 rounded-xl p-8 shadow-md hover:shadow-lg transition duration-300">
-                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mb-6">
-                        <i class="fas fa-briefcase-medical text-2xl"></i>
+                <!-- Service Card 3 -->
+                <div class="service-card bg-light rounded-2xl p-6 shadow-md transition duration-300">
+                    <div class="w-14 h-14 bg-accent rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                        <i class="fas fa-heartbeat"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Therapeutic Support</h3>
+                    <h3 class="text-xl font-semibold mb-3">Therapeutic Support</h3>
                     <p class="text-gray-600">Specialized therapies to improve your physical, mental, and emotional wellbeing.</p>
                 </div>
                 
-                <!-- Service 4 -->
-                <div class="bg-gray-50 rounded-xl p-8 shadow-md hover:shadow-lg transition duration-300">
-                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mb-6">
-                        <i class="fas fa-car text-2xl"></i>
+                <!-- Service Card 4 -->
+                <div class="service-card bg-light rounded-2xl p-6 shadow-md transition duration-300">
+                    <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                        <i class="fas fa-car"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Transport Assistance</h3>
+                    <h3 class="text-xl font-semibold mb-3">Transport Assistance</h3>
                     <p class="text-gray-600">Safe and reliable transportation to appointments, work, or social activities.</p>
                 </div>
                 
-                <!-- Service 5 -->
-                <div class="bg-gray-50 rounded-xl p-8 shadow-md hover:shadow-lg transition duration-300">
-                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mb-6">
-                        <i class="fas fa-tools text-2xl"></i>
+                <!-- Service Card 5 -->
+                <div class="service-card bg-light rounded-2xl p-6 shadow-md transition duration-300">
+                    <div class="w-14 h-14 bg-secondary rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                        <i class="fas fa-home"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Daily Living Support</h3>
+                    <h3 class="text-xl font-semibold mb-3">Daily Living Support</h3>
                     <p class="text-gray-600">Help with household tasks, meal preparation, and maintaining your living space.</p>
                 </div>
                 
-                <!-- Service 6 -->
-                <div class="bg-gray-50 rounded-xl p-8 shadow-md hover:shadow-lg transition duration-300">
-                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mb-6">
-                        <i class="fas fa-hands-helping text-2xl"></i>
+                <!-- Service Card 6 -->
+                <div class="service-card bg-light rounded-2xl p-6 shadow-md transition duration-300">
+                    <div class="w-14 h-14 bg-accent rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                        <i class="fas fa-tasks"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Support Coordination</h3>
+                    <h3 class="text-xl font-semibold mb-3">Support Coordination</h3>
                     <p class="text-gray-600">Guidance to understand and implement your NDIS plan effectively.</p>
                 </div>
             </div>
@@ -177,41 +188,27 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
+    <section id="about" class="py-20 bg-gray-50 px-4">
+        <div class="container mx-auto">
             <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">About S.W. Services</h2>
-                    <div class="w-20 h-1 bg-orange-500 mb-6"></div>
-                    <p class="text-gray-600 mb-6">At S.W. Services, we are passionate about providing high-quality disability support services that empower individuals to live fulfilling lives.</p>
-                    <p class="text-gray-600 mb-6">Our team of dedicated professionals is committed to delivering personalized care that respects your individuality and promotes your independence.</p>
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <p class="text-gray-600">NDIS Registered Provider</p>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <p class="text-gray-600">Compassionate & Professional Care</p>
-                    </div>
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <img src="image1.png" 
+                         alt="Team of caregivers smiling" 
+                         class="rounded-2xl shadow-xl w-full">
                 </div>
-                <div class="md:w-1/2 mt-10 md:mt-0">
-                    <div class="relative">
-                        <div class="rounded-xl w-full h-80 md:h-96 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                                 alt="Team of caregivers smiling"
-                                 class="w-full h-full object-cover">
-                        </div>
-                        <div class="absolute -bottom-6 -right-6 bg-orange-500 rounded-xl w-2/3 h-64 shadow-xl flex items-center justify-center">
-                            <div class="text-center p-6 text-white">
-                                <i class="fas fa-quote-left text-4xl mb-4 opacity-30"></i>
-                                <p class="text-lg font-medium mb-4">We believe in creating meaningful connections and providing support that makes a real difference in people's lives.</p>
-                                <p class="font-bold">- S.W. Services Team</p>
-                            </div>
-                        </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-6">About S.W. Services</h2>
+                    <p class="text-gray-600 text-lg mb-6">At S.W. Services, we are passionate about providing high-quality disability support services that empower individuals to live fulfilling lives.</p>
+                    <p class="text-gray-600 text-lg mb-8">Our team of dedicated professionals is committed to delivering personalized care that respects your individuality and promotes your independence.</p>
+                    
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <span class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium">NDIS Registered Provider</span>
+                        <span class="bg-secondary text-white px-4 py-2 rounded-full text-sm font-medium">Compassionate & Professional Care</span>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-2xl shadow-md border-l-4 border-accent">
+                        <p class="text-gray-600 italic">"We believe in creating meaningful connections and providing support that makes a real difference in people's lives."</p>
+                        <p class="font-medium mt-4">- S.W. Services Team</p>
                     </div>
                 </div>
             </div>
@@ -219,26 +216,119 @@
     </section>
 
     <!-- NDIS Info Section -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="bg-gradient-to-r from-green-600 to-orange-500 rounded-2xl p-8 md:p-12 text-white shadow-xl">
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="md:w-2/3 mb-8 md:mb-0 md:pr-8">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-6">Understanding the NDIS</h2>
-                        <p class="text-lg mb-6">The National Disability Insurance Scheme (NDIS) provides support to eligible people with intellectual, physical, sensory, cognitive and psychosocial disability.</p>
-                        <p class="text-lg">As a registered NDIS provider, we can help you navigate the scheme and access the support you need to achieve your goals.</p>
+    <section id="ndis" class="py-20 bg-primary text-white px-4">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Understanding the NDIS</h2>
+                    <p class="text-lg mb-6">The National Disability Insurance Scheme (NDIS) provides support to eligible people with intellectual, physical, sensory, cognitive and psychosocial disability.</p>
+                    <p class="text-lg mb-8">As a registered NDIS provider, we can help you navigate the scheme and access the support you need to achieve your goals.</p>
+                    
+                    <div class="bg-white p-6 rounded-2xl shadow-md">
+                        <h3 class="text-xl font-semibold text-dark mb-4">NDIS Information</h3>
+                        <p class="text-gray-600 mb-4">Learn more about how the scheme works</p>
+                        <a href="https://www.ndis.gov.au/" target="_blank" class="inline-flex items-center text-primary font-medium hover:underline">
+                            Visit NDIS Website
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
-                    <div class="md:w-1/3 flex justify-center">
-                        <div class="bg-white rounded-xl p-6 shadow-lg text-center">
-                            <div class="w-20 h-20 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-info text-3xl text-white"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">NDIS Information</h3>
-                            <p class="text-gray-600 mb-4">Learn more about how the scheme works</p>
-                            <a href="https://www.ndis.gov.au" target="_blank" class="inline-block gradient-bg text-white font-bold py-2 px-6 rounded-full">
-                                Visit NDIS
-                            </a>
+                </div>
+                <div class="md:w-1/2 md:pl-12 flex justify-center">
+                    <div class="bg-white p-8 rounded-2xl shadow-xl max-w-md">
+                        <h3 class="text-2xl font-bold text-dark mb-6 text-center">How We Can Help</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3"></i>
+                                <span class="text-gray-600">NDIS plan implementation support</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3"></i>
+                                <span class="text-gray-600">Guidance through the NDIS process</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3"></i>
+                                <span class="text-gray-600">Connection to appropriate services</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3"></i>
+                                <span class="text-gray-600">Regular plan reviews and adjustments</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-white px-4">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">What Our Clients Say</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Hear from individuals and families who have experienced our compassionate care and support services.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-light rounded-2xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Sarah Johnson" 
+                             class="w-16 h-16 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-semibold">Sarah Johnson</h4>
+                            <p class="text-gray-500 text-sm">NDIS Participant</p>
                         </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The team at S.W. Services has been incredibly supportive. They've helped me regain my independence with their compassionate care."</p>
+                    <div class="flex mt-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-light rounded-2xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Michael Chen" 
+                             class="w-16 h-16 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-semibold">Michael Chen</h4>
+                            <p class="text-gray-500 text-sm">Family Member</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"I can't thank S.W. Services enough for the care they provide to my mother. Their professionalism and kindness make all the difference."</p>
+                    <div class="flex mt-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-light rounded-2xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Emma Wilson" 
+                             class="w-16 h-16 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-semibold">Emma Wilson</h4>
+                            <p class="text-gray-500 text-sm">NDIS Participant</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The support coordination service helped me navigate the NDIS system with ease. Highly recommend their services!"</p>
+                    <div class="flex mt-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
                     </div>
                 </div>
             </div>
@@ -246,96 +336,67 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
+    <section id="contact" class="py-20 bg-gray-50 px-4">
+        <div class="container mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Contact Us</h2>
-                <div class="w-20 h-1 bg-green-600 mx-auto mb-4"></div>
-                <p class="text-gray-600 max-w-2xl mx-auto">Get in touch to discuss how we can support you or your loved one.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Contact Us</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Get in touch to discuss how we can support you or your loved one.</p>
             </div>
             
-            <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                    <div class="bg-white rounded-xl shadow-md p-8 h-full">
-                        <h3 class="text-xl font-bold text-gray-800 mb-6">Contact Information</h3>
+            <div class="flex flex-col md:flex-row gap-10">
+                <div class="md:w-1/2">
+                    <div class="bg-white rounded-2xl p-8 shadow-md">
+                        <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
                         
-                        <div class="space-y-6">
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white flex-shrink-0">
-                                    <i class="fas fa-phone-alt"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Phone</h4>
-                                    <p class="text-gray-600">0426 706 150</p>
-                                    <p class="text-gray-600">0406 746 669</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white flex-shrink-0">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Email</h4>
-                                    <p class="text-gray-600">S.w.services2024@gmail.com</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white flex-shrink-0">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Service Area</h4>
-                                    <p class="text-gray-600">We provide services across multiple locations</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white flex-shrink-0">
-                                    <i class="fas fa-share-alt"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Social Media</h4>
-                                    <div class="flex space-x-4 mt-2">
-                                        <a href="#" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition duration-300">
-                                            <i class="fab fa-facebook-f"></i>
-                                        </a>
-                                        <a href="#" class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center text-white hover:bg-pink-700 transition duration-300">
-                                            <i class="fab fa-instagram"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="mb-6">
+                            <h4 class="text-lg font-medium text-dark mb-3 flex items-center">
+                                <i class="fas fa-phone-alt text-primary mr-2"></i> Phone
+                            </h4>
+                            <p class="text-gray-600">0426 706 150</p>
+                            <p class="text-gray-600">0406 746 669</p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-lg font-medium text-dark mb-3 flex items-center">
+                                <i class="fas fa-envelope text-primary mr-2"></i> Email
+                            </h4>
+                            <p class="text-gray-600">S.w.services2024@gmail.com</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-medium text-dark mb-3 flex items-center">
+                                <i class="fas fa-map-marker-alt text-primary mr-2"></i> Service Area
+                            </h4>
+                            <p class="text-gray-600">We provide services across multiple locations</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="md:w-1/2">
-                    <div class="bg-white rounded-xl shadow-md p-8 h-full">
-                        <h3 class="text-xl font-bold text-gray-800 mb-6">Send Us a Message</h3>
-                        <form id="contact-form">
-                            <div class="mb-6">
-                                <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
-                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" required>
+                    <div class="bg-white rounded-2xl p-8 shadow-md">
+                        <h3 class="text-2xl font-semibold mb-6">Send Us a Message</h3>
+                        <form>
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 mb-2">Your Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 mb-2">Email Address</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
                             </div>
                             
                             <div class="mb-6">
-                                <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
-                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" required>
+                                <label for="message" class="block text-gray-700 mb-2">Your Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
                             </div>
                             
-                            <div class="mb-6">
-                                <label for="phone" class="block text-gray-700 font-medium mb-2">Phone Number</label>
-                                <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
-                            </div>
-                            
-                            <div class="mb-6">
-                                <label for="message" class="block text-gray-700 font-medium mb-2">Your Message</label>
-                                <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" required></textarea>
-                            </div>
-                            
-                            <button type="submit" class="gradient-bg text-white font-bold py-3 px-6 rounded-full hover:opacity-90 transition duration-300 w-full">
+                            <button type="submit" class="w-full bg-primary text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition">
                                 Send Message
                             </button>
                         </form>
@@ -345,142 +406,52 @@
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">What Our Clients Say</h2>
-                <div class="w-20 h-1 bg-orange-500 mx-auto"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 rounded-xl p-6 shadow-md">
-                    <div class="flex items-center mb-4">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                             alt="Client testimonial" 
-                             class="w-12 h-12 rounded-full object-cover mr-4">
-                        <div>
-                            <h4 class="font-bold">Sarah Johnson</h4>
-                            <p class="text-sm text-gray-600">NDIS Participant</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700">"The team at S.W. Services has been incredibly supportive. They've helped me regain my independence with their compassionate care."</p>
-                </div>
-                
-                <div class="bg-gray-50 rounded-xl p-6 shadow-md">
-                    <div class="flex items-center mb-4">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                             alt="Client testimonial" 
-                             class="w-12 h-12 rounded-full object-cover mr-4">
-                        <div>
-                            <h4 class="font-bold">Michael Chen</h4>
-                            <p class="text-sm text-gray-600">Family Member</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700">"I can't thank S.W. Services enough for the care they provide to my mother. Their professionalism and kindness make all the difference."</p>
-                </div>
-                
-                <div class="bg-gray-50 rounded-xl p-6 shadow-md">
-                    <div class="flex items-center mb-4">
-                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                             alt="Client testimonial" 
-                             class="w-12 h-12 rounded-full object-cover mr-4">
-                        <div>
-                            <h4 class="font-bold">Emma Wilson</h4>
-                            <p class="text-sm text-gray-600">NDIS Participant</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700">"The support coordination service helped me navigate the NDIS system with ease. Highly recommend their services!"</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between">
-                <div class="mb-8 md:mb-0">
-                    <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white">
-                            <i class="fas fa-hands-helping text-xl"></i>
-                        </div>
-                        <h2 class="logo text-xl font-bold">
-                            <span class="text-green-400">S.W.</span>
-                            <span class="text-orange-400">Services</span>
-                        </h2>
-                    </div>
-                    <p class="text-gray-400 mb-4 max-w-xs">Providing quality NDIS disability support services with compassion and professionalism.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
+    <footer class="bg-dark text-white py-12 px-4">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold">S.W. Services</h3>
+                    <p class="text-gray-400 mt-2">Compassionate NDIS Disability Support</p>
                 </div>
                 
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-                    <div>
-                        <h3 class="text-lg font-bold mb-4">Quick Links</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
-                            <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Services</a></li>
-                            <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
-                            <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-lg font-bold mb-4">Services</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Personal Care</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Community Access</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Therapeutic Support</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Support Coordination</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-lg font-bold mb-4">Legal</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">NDIS Compliance</a></li>
-                        </ul>
-                    </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
                 </div>
             </div>
             
-            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
                 <p>&copy; 2024 S.W. Services. All rights reserved.</p>
-                <p class="mt-2">Registered NDIS Provider</p>
-                <div class="mt-4 flex justify-center">
-                    <div class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium inline-flex items-center">
-                        <i class="fas fa-heart mr-2"></i>
-                        <span>We love NDIS</span>
-                    </div>
-                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 gradient-bg rounded-full shadow-lg text-white hidden transition duration-300">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
     <script>
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
         });
         
-        // Smooth Scrolling for Anchor Links
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobile-menu');
+            const menuButton = document.getElementById('mobile-menu-button');
+            
+            if (!menu.contains(event.target) && !menuButton.contains(event.target) && !menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+            }
+        });
+        
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -490,54 +461,18 @@
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    targetElement.scrollIntoView({
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
                         behavior: 'smooth'
                     });
                     
                     // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
                     if (!mobileMenu.classList.contains('hidden')) {
                         mobileMenu.classList.add('hidden');
                     }
                 }
             });
-        });
-        
-        // Back to Top Button
-        const backToTopButton = document.getElementById('back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.remove('hidden');
-            } else {
-                backToTopButton.classList.add('hidden');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Form Submission
-        const contactForm = document.getElementById('contact-form');
-        
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
-            
-            // Here you would typically send the form data to a server
-            // For this example, we'll just show an alert
-            alert(`Thank you, ${name}! Your message has been received. We'll contact you soon at ${email} or ${phone}.`);
-            
-            // Reset form
-            contactForm.reset();
         });
     </script>
 </body>
